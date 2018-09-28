@@ -1,0 +1,23 @@
+{
+  "defaultSeverity": "error",
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
+  "rules": {
+    "semicolon": false,
+    "interface-name": false,
+    "no-console": false,
+    "prettier": [
+      true,
+      {
+        "singleQuote": true,
+        "semi": false
+      }
+    ]
+  }
+}
