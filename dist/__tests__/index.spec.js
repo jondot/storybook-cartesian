@@ -10,7 +10,7 @@ describe('cartesian', () => {
         const stories = {
             add: (title, story) => s.push(Object.assign({ title }, story()))
         };
-        index_1.default(stories).add(() => ({ oneProp: [true, false], twoProp: ['', 'test'] }), props => `title: [${props.oneProp}], [${props.twoProp}]`, props => () => ({
+        index_1.default(stories).add(() => ({ oneProp: [true, false], twoProp: ['', 'test'] }), props => `title: [${props.oneProp}], [${props.twoProp}]`, props => ({
             story: {
                 props
             }
@@ -25,7 +25,7 @@ describe('cartesian', () => {
         index_1.default(stories).add(() => ({
             oneProp: [true, false],
             twoProp: ['', 'foobar', 'foobaz', 'test']
-        }), props => `title: [${props.oneProp}], [${props.twoProp}]`, props => () => ({
+        }), props => `title: [${props.oneProp}], [${props.twoProp}]`, props => ({
             story: {
                 props
             }

@@ -27,7 +27,7 @@ const cartesian = (stories: any) => ({
     apply: (
       stories: any,
       candidate: { props: Props; story: any; title: string }
-    ) => void = (s, cand) => s.add(cand.title, cand.story)
+    ) => void = (s, cand) => s.add(cand.title, () => cand.story)
   ) => {
     const data = seed()
     const fields = keys(data)

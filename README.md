@@ -132,8 +132,10 @@ cartesian(storiesOf('Button/Cartesian'))
         componentRender,
         () => true, // keep it as the default
         (stories, candidate)=>{
-            console.log('adding to stories', candidate.props)
-            stories.add(candidate.title, candidate.story)
+            console.log('adding and wrapping to stories', candidate.props)
+            stories.add(candidate.title, ()=> <Wrapper>
+                {candidate.story}
+            </Wrapper>)
         }
     )
 ```

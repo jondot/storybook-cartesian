@@ -9,7 +9,7 @@ describe('cartesian', () => {
     cartesian(stories).add(
       () => ({ oneProp: [true, false], twoProp: ['', 'test'] }),
       props => `title: [${props.oneProp}], [${props.twoProp}]`,
-      props => () => ({
+      props => ({
         story: {
           props
         }
@@ -28,7 +28,7 @@ describe('cartesian', () => {
         twoProp: ['', 'foobar', 'foobaz', 'test']
       }),
       props => `title: [${props.oneProp}], [${props.twoProp}]`,
-      props => () => ({
+      props => ({
         story: {
           props
         }
