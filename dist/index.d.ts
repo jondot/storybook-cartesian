@@ -6,6 +6,6 @@ declare const cartesian: (stories: any) => {
         props: Props;
         story: any;
         title: string;
-    }) => void) => void;
+    }[]) => void) => void;
 };
 export default cartesian;

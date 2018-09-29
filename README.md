@@ -58,6 +58,10 @@ cartesian(<stories>)
     )
 ```
 
+Which gets you this kind of story layout _generated automatically_ (for now the last "All/all variants" is a story discussed in [Advanced](#advanced)):
+
+![](media/stories.png)
+
 Your `seed` function is responsible to generate content in the form of:
 
 ```javascript
@@ -122,7 +126,13 @@ cartesian(storiesOf('Button/Cartesian'))
     )
 ```
 
-Some other times you might want to customize how you add stories. For this, we have another optional function:
+Some other times you might want to customize how you add stories. For example, let's say you want just one story to contain all cartesian product items. 
+
+
+![](media/variants.png)
+
+
+For this, we have another optional function:
 
 ```javascript
 cartesian(storiesOf('Button/Cartesian'))
@@ -131,11 +141,14 @@ cartesian(storiesOf('Button/Cartesian'))
         titleRender,
         componentRender,
         () => true, // keep it as the default
-        (stories, candidate)=>{
-            console.log('adding and wrapping to stories', candidate.props)
-            stories.add(candidate.title, ()=> <Wrapper>
-                {candidate.story}
-            </Wrapper>)
+        (stories, candidates)=>{
+            console.log('adding and wrapping to stories')
+            const story = candidates.map(c=>(
+                <div>
+                    <div>{c.title}</div>
+                    <div>{c.story}</div>
+                </div>))
+            stories.add('all variants', ()=> story)
         }
     )
 ```

@@ -26,8 +26,9 @@ const cartesian = (stories: any) => ({
     valid: (props: Props) => boolean = () => true,
     apply: (
       stories: any,
-      candidate: { props: Props; story: any; title: string }
-    ) => void = (s, cand) => s.add(cand.title, () => cand.story)
+      candidate: Array<{ props: Props; story: any; title: string }>
+    ) => void = (s, cands) =>
+      each(cand => s.add(cand.title, () => cand.story), cands)
   ) => {
     const data = seed()
     const fields = keys(data)
@@ -43,7 +44,7 @@ const cartesian = (stories: any) => ({
       }),
       filter(valid, rows)
     )
-    each(candidate => apply(stories, candidate), candidates)
+    apply(stories, candidates)
   }
 })
 

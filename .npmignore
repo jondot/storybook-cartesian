@@ -2,6 +2,8 @@ node_modules/
 src/
 media/
 example/
+dist/__tests__/
+.vscode/
 .travis.yml
 tsconfig.json
 tslint.json
