@@ -1,5 +1,11 @@
 {
   "name": "storybook-cartesian",
+  "homepage": "https://github.com/jondot/storybook-cartesian",
+  "keywords": [
+    "storybook",
+    "testing",
+    "react"
+  ],
   "version": "1.0.2",
   "license": "MIT",
   "main": "dist/index.js",
