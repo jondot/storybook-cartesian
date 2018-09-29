@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cartesian all valid 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "",
+      },
+    },
+    "title": "title: [true], []",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "test",
+      },
+    },
+    "title": "title: [true], [test]",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "",
+      },
+    },
+    "title": "title: [false], []",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "test",
+      },
+    },
+    "title": "title: [false], [test]",
+  },
+]
+`;
+
+exports[`cartesian some invalid 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "",
+      },
+    },
+    "title": "title: [true], []",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "foobar",
+      },
+    },
+    "title": "title: [true], [foobar]",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "foobaz",
+      },
+    },
+    "title": "title: [true], [foobaz]",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "test",
+      },
+    },
+    "title": "title: [true], [test]",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "foobar",
+      },
+    },
+    "title": "title: [false], [foobar]",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "foobaz",
+      },
+    },
+    "title": "title: [false], [foobaz]",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "test",
+      },
+    },
+    "title": "title: [false], [test]",
+  },
+]
+`;
