@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cartesian all valid 1`] = `
+exports[`cartesian choices empty prop 1`] = `Array []`;
+
+exports[`cartesian choices multi prop 1`] = `
 Array [
   Object {
     "story": Object {
@@ -9,7 +11,7 @@ Array [
         "twoProp": "",
       },
     },
-    "title": "title: [true], []",
+    "title": "{\\"oneProp\\":true,\\"twoProp\\":\\"\\"}",
   },
   Object {
     "story": Object {
@@ -18,7 +20,7 @@ Array [
         "twoProp": "test",
       },
     },
-    "title": "title: [true], [test]",
+    "title": "{\\"oneProp\\":true,\\"twoProp\\":\\"test\\"}",
   },
   Object {
     "story": Object {
@@ -27,7 +29,7 @@ Array [
         "twoProp": "",
       },
     },
-    "title": "title: [false], []",
+    "title": "{\\"oneProp\\":false,\\"twoProp\\":\\"\\"}",
   },
   Object {
     "story": Object {
@@ -36,12 +38,78 @@ Array [
         "twoProp": "test",
       },
     },
-    "title": "title: [false], [test]",
+    "title": "{\\"oneProp\\":false,\\"twoProp\\":\\"test\\"}",
   },
 ]
 `;
 
-exports[`cartesian some invalid 1`] = `
+exports[`cartesian choices nested prop 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": Object {
+          "accept": true,
+          "story": "yes",
+        },
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"twoProp\\":\\"\\",\\"oneProp\\":{\\"story\\":\\"yes\\",\\"accept\\":true}}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": Object {
+          "accept": true,
+          "story": "yes",
+        },
+        "twoProp": "test",
+      },
+    },
+    "title": "{\\"twoProp\\":\\"test\\",\\"oneProp\\":{\\"story\\":\\"yes\\",\\"accept\\":true}}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": Object {
+          "accept": false,
+          "story": "yes",
+        },
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"twoProp\\":\\"\\",\\"oneProp\\":{\\"story\\":\\"yes\\",\\"accept\\":false}}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": Object {
+          "accept": false,
+          "story": "yes",
+        },
+        "twoProp": "test",
+      },
+    },
+    "title": "{\\"twoProp\\":\\"test\\",\\"oneProp\\":{\\"story\\":\\"yes\\",\\"accept\\":false}}",
+  },
+]
+`;
+
+exports[`cartesian choices single prop 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+      },
+    },
+    "title": "{\\"oneProp\\":true}",
+  },
+]
+`;
+
+exports[`cartesian choices some invalid 1`] = `
 Array [
   Object {
     "story": Object {
@@ -50,7 +118,7 @@ Array [
         "twoProp": "",
       },
     },
-    "title": "title: [true], []",
+    "title": "{\\"oneProp\\":true,\\"twoProp\\":\\"\\"}",
   },
   Object {
     "story": Object {
@@ -59,7 +127,7 @@ Array [
         "twoProp": "foobar",
       },
     },
-    "title": "title: [true], [foobar]",
+    "title": "{\\"oneProp\\":true,\\"twoProp\\":\\"foobar\\"}",
   },
   Object {
     "story": Object {
@@ -68,7 +136,7 @@ Array [
         "twoProp": "foobaz",
       },
     },
-    "title": "title: [true], [foobaz]",
+    "title": "{\\"oneProp\\":true,\\"twoProp\\":\\"foobaz\\"}",
   },
   Object {
     "story": Object {
@@ -77,7 +145,16 @@ Array [
         "twoProp": "test",
       },
     },
-    "title": "title: [true], [test]",
+    "title": "{\\"oneProp\\":true,\\"twoProp\\":\\"test\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"oneProp\\":false,\\"twoProp\\":\\"\\"}",
   },
   Object {
     "story": Object {
@@ -86,7 +163,7 @@ Array [
         "twoProp": "foobar",
       },
     },
-    "title": "title: [false], [foobar]",
+    "title": "{\\"oneProp\\":false,\\"twoProp\\":\\"foobar\\"}",
   },
   Object {
     "story": Object {
@@ -95,7 +172,7 @@ Array [
         "twoProp": "foobaz",
       },
     },
-    "title": "title: [false], [foobaz]",
+    "title": "{\\"oneProp\\":false,\\"twoProp\\":\\"foobaz\\"}",
   },
   Object {
     "story": Object {
@@ -104,7 +181,49 @@ Array [
         "twoProp": "test",
       },
     },
-    "title": "title: [false], [test]",
+    "title": "{\\"oneProp\\":false,\\"twoProp\\":\\"test\\"}",
+  },
+]
+`;
+
+exports[`cartesian vanilla empty 1`] = `Array []`;
+
+exports[`cartesian vanilla empty prop 1`] = `Array []`;
+
+exports[`cartesian vanilla empty prop, complex 1`] = `Array []`;
+
+exports[`cartesian vanilla multi prop 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": "one-1",
+        "twoProp": "two",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"one-1\\",\\"twoProp\\":\\"two\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": "one-2",
+        "twoProp": "two",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"one-2\\",\\"twoProp\\":\\"two\\"}",
+  },
+]
+`;
+
+exports[`cartesian vanilla single prop 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+      },
+    },
+    "title": "{\\"oneProp\\":true}",
   },
 ]
 `;

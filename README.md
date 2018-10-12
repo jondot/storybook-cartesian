@@ -80,6 +80,33 @@ const seedfn = ()=>({
 })
 ```
 
+If you want to have just a selection of props be cartesian you can use the special `choice` function:
+
+```js
+import cartesian, { choice } from 'cartesian'
+
+const seedfn = ()=>({
+    one: "rabbit",
+    two: "rabbit, rabbit",
+    check: choice(true, false)
+})
+```
+
+This will create a special data strucure which tells `cartesian` to create these combinations:
+
+```js
+[{
+    one: "rabbit",
+    two: "rabbit, rabbit",
+    check: true
+},{
+    one: "rabbit",
+    two: "rabbit, rabbit",
+    check: false
+}]
+```
+
+
 Your `titleRender` function gets an instance of your props and returns a string:
 
 ```javascript

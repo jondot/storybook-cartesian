@@ -17,9 +17,11 @@
     "build": "tsc"
   },
   "dependencies": {
+    "flat": "^4.1.0",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@types/flat": "^0.0.28",
     "@types/jest": "^23.3.2",
     "@types/lodash": "^4.14.116",
     "jest": "^23.6.0",
