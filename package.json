@@ -13,6 +13,7 @@
     "start": "tsc -w",
     "watch": "jest --watch",
     "test": "jest",
+    "toc": "doctoc README.md",
     "release": "yarn build && git commit -am 'build'; yarn version && git push --tags && git push origin master",
     "build": "tsc"
   },
@@ -24,6 +25,7 @@
     "@types/flat": "^0.0.28",
     "@types/jest": "^23.3.2",
     "@types/lodash": "^4.14.116",
+    "doctoc": "^1.4.0",
     "jest": "^23.6.0",
     "prettier": "^1.14.3",
     "ts-jest": "^23.10.2",
