@@ -1,4 +1,4 @@
-import cartesian, { choice } from '../index'
+import cartesian, { choice, renderWithLegend } from '../index'
 
 const createStories = (s: any[]) => ({
   add: (title: string, story: any) => s.push({ title, ...story() })
@@ -10,9 +10,9 @@ const serializeStory = (props: any) => ({
     props
   }
 })
-const createCartesian = (props: any) => {
+const createCartesian = (props: any, renderTitle: any = storyTitle) => {
   const s: any[] = []
-  cartesian(createStories(s)).add(() => props, storyTitle, serializeStory)
+  cartesian(createStories(s)).add(() => props, renderTitle, serializeStory)
   return s
 }
 
@@ -60,6 +60,35 @@ describe('cartesian', () => {
     })
   })
 
+  describe('legends', () => {
+    it('render title', () => {
+      const renderTitle = renderWithLegend({ true: 'yes!', false: 'no :(' })
+      expect(
+        createCartesian(
+          {
+            oneProp: choice(true, false),
+            twoProp: choice('', 'foobar', 'foobaz', 'test')
+          },
+          renderTitle((props: any) => JSON.stringify(props))
+        )
+      ).toMatchSnapshot()
+    })
+    it('render title where props are nested', () => {
+      const renderTitle = renderWithLegend({ true: 'yes!', false: 'no :(' })
+      expect(
+        createCartesian(
+          {
+            oneProp: choice(true, false),
+            twoProp: choice(
+              { colors: { fg: true, bg: false } },
+              { colors: { fg: false, bg: false } }
+            )
+          },
+          renderTitle((props: any) => JSON.stringify(props))
+        )
+      ).toMatchSnapshot()
+    })
+  })
   describe('vanilla', () => {
     it('empty prop', () => {
       expect(

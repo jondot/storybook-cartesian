@@ -17,9 +17,9 @@ const serializeStory = (props) => ({
         props
     }
 });
-const createCartesian = (props) => {
+const createCartesian = (props, renderTitle = storyTitle) => {
     const s = [];
-    index_1.default(createStories(s)).add(() => props, storyTitle, serializeStory);
+    index_1.default(createStories(s)).add(() => props, renderTitle, serializeStory);
     return s;
 };
 describe('cartesian', () => {
@@ -51,6 +51,22 @@ describe('cartesian', () => {
                 oneProp: index_1.choice(true, false),
                 twoProp: index_1.choice('', 'foobar', 'foobaz', 'test')
             })).toMatchSnapshot();
+        });
+    });
+    describe('legends', () => {
+        it('render title', () => {
+            const renderTitle = index_1.renderWithLegend({ true: 'yes!', false: 'no :(' });
+            expect(createCartesian({
+                oneProp: index_1.choice(true, false),
+                twoProp: index_1.choice('', 'foobar', 'foobaz', 'test')
+            }, renderTitle((props) => JSON.stringify(props)))).toMatchSnapshot();
+        });
+        it('render title where props are nested', () => {
+            const renderTitle = index_1.renderWithLegend({ true: 'yes!', false: 'no :(' });
+            expect(createCartesian({
+                oneProp: index_1.choice(true, false),
+                twoProp: index_1.choice({ colors: { fg: true, bg: false } }, { colors: { fg: false, bg: false } })
+            }, renderTitle((props) => JSON.stringify(props)))).toMatchSnapshot();
         });
     });
     describe('vanilla', () => {

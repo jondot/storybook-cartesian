@@ -186,6 +186,144 @@ Array [
 ]
 `;
 
+exports[`cartesian legends render title 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":\\"\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "foobar",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":\\"foobar\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "foobaz",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":\\"foobaz\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "test",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":\\"test\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"no :(\\",\\"twoProp\\":\\"\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "foobar",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"no :(\\",\\"twoProp\\":\\"foobar\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "foobaz",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"no :(\\",\\"twoProp\\":\\"foobaz\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": "test",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"no :(\\",\\"twoProp\\":\\"test\\"}",
+  },
+]
+`;
+
+exports[`cartesian legends render title where props are nested 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": Object {
+          "colors": Object {
+            "bg": false,
+            "fg": true,
+          },
+        },
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":{\\"colors\\":{\\"fg\\":\\"yes!\\",\\"bg\\":\\"no :(\\"}}}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": Object {
+          "colors": Object {
+            "bg": false,
+            "fg": false,
+          },
+        },
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":{\\"colors\\":{\\"fg\\":\\"no :(\\",\\"bg\\":\\"no :(\\"}}}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": Object {
+          "colors": Object {
+            "bg": false,
+            "fg": true,
+          },
+        },
+      },
+    },
+    "title": "{\\"oneProp\\":\\"no :(\\",\\"twoProp\\":{\\"colors\\":{\\"fg\\":\\"yes!\\",\\"bg\\":\\"no :(\\"}}}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": false,
+        "twoProp": Object {
+          "colors": Object {
+            "bg": false,
+            "fg": false,
+          },
+        },
+      },
+    },
+    "title": "{\\"oneProp\\":\\"no :(\\",\\"twoProp\\":{\\"colors\\":{\\"fg\\":\\"no :(\\",\\"bg\\":\\"no :(\\"}}}",
+  },
+]
+`;
+
 exports[`cartesian vanilla empty 1`] = `Array []`;
 
 exports[`cartesian vanilla empty prop 1`] = `Array []`;

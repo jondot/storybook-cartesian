@@ -5,9 +5,8 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import cartesian from '../../../../dist/index'
+import cartesian, { renderWithLegend } from '../../../../dist/index'
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('Button', module)
   .add('with text', () => <Button style={{ backgroundColor: 'red' }} onClick={action('clicked')}>Hello Button</Button>)
@@ -29,6 +28,24 @@ cartesian(storiesOf('Button/Cartesian', module))
     props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>
   )
 
+const renderTitle = renderWithLegend({
+  '#FF5630': 'primary',
+  '#FFBDAD': 'secondary',
+  '#4C9AFF': 'primary-opt',
+  '#B3D4FF': 'secondary-opt',
+  'Click Me': 'english',
+  '': 'empty',
+  '你好': 'chinese'
+})
+
+cartesian(storiesOf('Button/Cartesian (legend)', module))
+  .add(() => ({
+    colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
+    text: ['Click Me', '', '你好']
+  }),
+    renderTitle(props => `"${props.text}" ${props.colors.bg + '/' + props.colors.fg}`),
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>
+  )
 cartesian(storiesOf('Button/Cartesian/All', module))
   .add(() => ({
     colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],

@@ -161,22 +161,24 @@ Some other times you might want to customize how you add stories. For example, l
 
 For this, we have another optional function:
 
+
 ```javascript
+const allVariantsInOne = (stories, variants)=>{
+    const story = variants.map(c=>(
+        <div>
+            <div>{c.title}</div>
+            <div>{c.story}</div>
+        </div>))
+    stories.add('all variants', ()=> story)
+}
+
 cartesian(storiesOf('Button/Cartesian'))
     .add(
         seedfn,
         titleRender,
         componentRender,
         () => true, // keep it as the default
-        (stories, candidates)=>{
-            console.log('adding and wrapping to stories')
-            const story = candidates.map(c=>(
-                <div>
-                    <div>{c.title}</div>
-                    <div>{c.story}</div>
-                </div>))
-            stories.add('all variants', ()=> story)
-        }
+        allVariantsInOne,
     )
 ```
 
