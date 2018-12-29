@@ -22,6 +22,12 @@ const createCartesian = (props, renderTitle = storyTitle) => {
     index_1.default(createStories(s)).add(() => props, renderTitle, serializeStory);
     return s;
 };
+describe('xproduct', () => {
+    it('should product', () => {
+        expect(index_1.xproduct([[1, 2], [3, 2], [4, 2]])).toMatchSnapshot();
+        expect(index_1.xproduct([[1, null], [3, null], [4, null]])).toMatchSnapshot();
+    });
+});
 describe('cartesian', () => {
     describe('choices', () => {
         it('empty prop', () => {

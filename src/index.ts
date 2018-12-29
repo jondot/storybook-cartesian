@@ -182,5 +182,5 @@ const cartesian = (stories: any) => ({
   }
 })
 
-export { choice, renderWithLegend }
+export { choice, renderWithLegend, xproduct }
 export default cartesian

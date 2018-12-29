@@ -17,6 +17,7 @@ exports.renderWithLegend = renderWithLegend;
 const xproduct = (vals) => fp_1.reduce((a, b) => fp_1.flatMap(x => fp_1.map(y => fp_1.concat(x, y))(b))(a))([
     []
 ])(vals);
+exports.xproduct = xproduct;
 /*
 Turns seed data into node enriched data:
   { foo: ['one', 'two']}

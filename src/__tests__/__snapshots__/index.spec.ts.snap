@@ -365,3 +365,93 @@ Array [
   },
 ]
 `;
+
+exports[`xproduct should product 1`] = `
+Array [
+  Array [
+    1,
+    3,
+    4,
+  ],
+  Array [
+    1,
+    3,
+    2,
+  ],
+  Array [
+    1,
+    2,
+    4,
+  ],
+  Array [
+    1,
+    2,
+    2,
+  ],
+  Array [
+    2,
+    3,
+    4,
+  ],
+  Array [
+    2,
+    3,
+    2,
+  ],
+  Array [
+    2,
+    2,
+    4,
+  ],
+  Array [
+    2,
+    2,
+    2,
+  ],
+]
+`;
+
+exports[`xproduct should product 2`] = `
+Array [
+  Array [
+    1,
+    3,
+    4,
+  ],
+  Array [
+    1,
+    3,
+    null,
+  ],
+  Array [
+    1,
+    null,
+    4,
+  ],
+  Array [
+    1,
+    null,
+    null,
+  ],
+  Array [
+    null,
+    3,
+    4,
+  ],
+  Array [
+    null,
+    3,
+    null,
+  ],
+  Array [
+    null,
+    null,
+    4,
+  ],
+  Array [
+    null,
+    null,
+    null,
+  ],
+]
+`;

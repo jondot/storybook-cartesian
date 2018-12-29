@@ -1,4 +1,4 @@
-import cartesian, { choice, renderWithLegend } from '../index'
+import cartesian, { choice, renderWithLegend, xproduct } from '../index'
 
 const createStories = (s: any[]) => ({
   add: (title: string, story: any) => s.push({ title, ...story() })
@@ -16,6 +16,12 @@ const createCartesian = (props: any, renderTitle: any = storyTitle) => {
   return s
 }
 
+describe('xproduct', () => {
+  it('should product', () => {
+    expect(xproduct([[1, 2], [3, 2], [4, 2]])).toMatchSnapshot()
+    expect(xproduct([[1, null], [3, null], [4, null]])).toMatchSnapshot()
+  })
+})
 describe('cartesian', () => {
   describe('choices', () => {
     it('empty prop', () => {
