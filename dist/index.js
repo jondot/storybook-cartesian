@@ -91,10 +91,13 @@ Where 'prop1', 'prop2' are fields that belong to Props type,
 CartesianData is typed to copy this field structure, and replace the
 values with _arrays of values_.
 */
-const defaultApply = (stories, variants) => fp_1.each(cand => stories.add(cand.title, () => cand.story), variants);
+const defaultApply = (stories, variants) => {
+    fp_1.each(cand => stories.add(cand.title, () => cand.story), variants);
+};
 const alwaysValid = () => true;
 const cartesian = (stories) => ({
-    add: (seed, renderTitle, renderStory, valid = alwaysValid, apply = defaultApply) => {
+    add: (seed, renderStory, opts) => {
+        const { valid, renderTitle, apply } = Object.assign({ apply: defaultApply, renderTitle: (props) => JSON.stringify(props), valid: alwaysValid }, opts);
         // { foo: { bar: [1,2] } } -> { 'foo.bar': [1,2] }
         const data = flat_1.default(seed(), { safe: true });
         // { 'foo.bar': [1,2] } -> { 'foo.bar': ['$choice$', [1,2]] }

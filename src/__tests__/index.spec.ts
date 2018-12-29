@@ -17,7 +17,7 @@ const serializeStory = (props: any) => ({
 })
 const createCartesian = (props: any, renderTitle: any = storyTitle) => {
   const s: any[] = []
-  cartesian(createStories(s)).add(() => props, renderTitle, serializeStory)
+  cartesian(createStories(s)).add(() => props, serializeStory, { renderTitle })
   return s
 }
 

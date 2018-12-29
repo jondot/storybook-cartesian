@@ -46,7 +46,6 @@ cartesian(storiesOf('Button/Cartesian', module))
         ],
         text: ['Click Me', '', '你好']
     }),
-    props => `"${props.text}" ${props.colors.bg + '/' + props.colors.fg}`,
     props => <Button 
                 style={{ 
                     padding: '1em 3em', 
@@ -67,10 +66,12 @@ The general structure for `cartesian` is this:
 cartesian(<stories>)
     .add(
         <seed function>,
-        <title renderer>,
         <component renderer>,
-        <valid combination filter (optional)>,
-        <story apply function (optional)>
+        { 
+            renderTitle: <title renderer>,
+            valid: <valid combination filter (optional)>,
+            apply: <story apply function (optional)>
+        }
     )
 ```
 
@@ -126,7 +127,7 @@ This will create a special data strucure which tells `cartesian` to create these
 Your `titleRender` function gets an instance of your props and returns a string:
 
 ```javascript
-const titleRender = props => `${props.one} / ${props.check}`
+const renderTitle = props => `${props.one} / ${props.check}`
 ```
 
 Your `storyRender` function gets an instance of your props and returns a component:
@@ -141,8 +142,8 @@ And to compose all of these with `cartesian` we can now do:
 cartesian(storiesOf('Button/Cartesian'))
     .add(
         seedfn,
-        titleRender,
-        componentRender
+        componentRender,
+        { renderTitle }
     )
 ```
 
@@ -159,7 +160,7 @@ import cartesian, { renderWithLegend } from 'cartesian'
 const complex = { foo:1, bar: 2 }
 complex.toString = () => 'complex-1'
 
-const renderTitle = renderWithLegend({
+const titleWithLegend = renderWithLegend({
   '#FF5630': 'primary',
   '#FFBDAD': 'secondary',
   '#4C9AFF': 'primary-opt',
@@ -175,8 +176,10 @@ cartesian(storiesOf('Button/Cartesian (legend)', module))
     colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
     text: ['Click Me', '', '你好']
   }),
-    renderTitle(props => `"${props.text}" ${props.colors.bg + '/' + props.colors.fg}`),
-    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
+    {
+        renderTitle: titleWithLegend(props => `"${props.text}" ${props.colors.bg + '/' + props.colors.fg}`),
+    }
   )
 ```
 
@@ -202,9 +205,11 @@ For this, we have an `valid` function that we can add, and the following will fi
 cartesian(storiesOf('Button/Cartesian'))
     .add(
         seedfn,
-        titleRender,
         componentRender,
-        props => !(props.isLoading && props.results)
+        { 
+            renderTitle,
+            valid: props => !(props.isLoading && props.results)
+        }
     )
 ```
 
@@ -230,10 +235,8 @@ const allVariantsInOne = (stories, variants)=>{
 cartesian(storiesOf('Button/Cartesian'))
     .add(
         seedfn,
-        titleRender,
         componentRender,
-        () => true, // keep it as the default
-        allVariantsInOne,
+        { apply: allVariantsInOne }
     )
 ```
 

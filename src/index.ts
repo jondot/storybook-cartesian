@@ -124,22 +124,34 @@ CartesianData is typed to copy this field structure, and replace the
 values with _arrays of values_.
 */
 
-const defaultApply = <T>(stories: any, variants: Array<StoryVariant<T>>) =>
+const defaultApply = <T>(
+  stories: any,
+  variants: Array<StoryVariant<T>>
+): void => {
   each(cand => stories.add(cand.title, () => cand.story), variants)
+}
 
 const alwaysValid = () => true
 
 const cartesian = (stories: any) => ({
   add: <Props>(
     seed: () => CartesianData<Props>,
-    renderTitle: (props: Props) => string,
     renderStory: (props: Props) => any,
-    valid: (props: Props) => boolean = alwaysValid,
-    apply: (
-      stories: any,
-      variants: Array<StoryVariant<Props>>
-    ) => void = defaultApply
+    opts: {
+      renderTitle?: (props: Props) => string
+      valid?: (props: Props) => boolean
+      apply?: (stories: any, variants: Array<StoryVariant<Props>>) => void
+    }
   ) => {
+    const { valid, renderTitle, apply } = {
+      apply: defaultApply as (
+        stories: any,
+        variants: Array<StoryVariant<Props>>
+      ) => void,
+      renderTitle: (props: Props) => JSON.stringify(props),
+      valid: alwaysValid,
+      ...opts
+    }
     // { foo: { bar: [1,2] } } -> { 'foo.bar': [1,2] }
     const data = flatten(seed(), { safe: true })
 

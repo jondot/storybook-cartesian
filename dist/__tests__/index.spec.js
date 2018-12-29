@@ -19,7 +19,7 @@ const serializeStory = (props) => ({
 });
 const createCartesian = (props, renderTitle = storyTitle) => {
     const s = [];
-    index_1.default(createStories(s)).add(() => props, renderTitle, serializeStory);
+    index_1.default(createStories(s)).add(() => props, serializeStory, { renderTitle });
     return s;
 };
 describe('xproduct', () => {

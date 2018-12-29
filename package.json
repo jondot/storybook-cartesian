@@ -15,7 +15,8 @@
     "test": "jest",
     "toc": "doctoc README.md",
     "release": "yarn build && git commit -am 'build'; yarn version && git push --tags && git push origin master",
-    "build": "tsc"
+    "build": "tsc",
+    "storybook": "cd example/app && yarn storybook"
   },
   "dependencies": {
     "flat": "^4.1.0",
