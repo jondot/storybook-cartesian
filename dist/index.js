@@ -12,7 +12,7 @@ const flat_1 = __importStar(require("flat"));
 // map props values, with legend lookup but also
 // treat nested structured by flatten->map->unflaten like:
 // { text: 'foo', colors: { bg: '1', fg: '2'}}
-const renderWithLegend = (legend) => (f) => (props) => f(flat_1.unflatten(fp_1.mapValues((p) => legend[p.toString()] || p, flat_1.default(props))));
+const renderWithLegend = (legend) => (f) => (props) => f(flat_1.unflatten(fp_1.mapValues((p) => legend[p ? p.toString() : 'null'] || p, flat_1.default(props))));
 exports.renderWithLegend = renderWithLegend;
 const xproduct = (vals) => fp_1.reduce((a, b) => fp_1.flatMap(x => fp_1.map(y => fp_1.concat(x, y))(b))(a))([
     []
