@@ -9,6 +9,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fp_1 = require("lodash/fp");
 const flat_1 = __importStar(require("flat"));
+const titles = {
+    renderCheckSignsIfExists: ({ exists = '✓', missing = 'x', existsFn = (v) => v, sep = ' | ' } = {}) => (props) => fp_1.toPairs(props)
+        .map(([k, v]) => (existsFn(v) ? `${exists} ${k}` : `${missing} ${k}`))
+        .join(sep),
+    renderPropNames: ({ sep = ' | ' } = {}) => (props) => fp_1.keys(props).join(sep)
+};
+exports.titles = titles;
 // map props values, with legend lookup but also
 // treat nested structured by flatten->map->unflaten like:
 // { text: 'foo', colors: { bg: '1', fg: '2'}}

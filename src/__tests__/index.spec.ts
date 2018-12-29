@@ -2,6 +2,7 @@ import cartesian, {
   choice,
   renderWithLegend,
   renderWithLegendFlat,
+  titles,
   xproduct
 } from '../index'
 
@@ -25,6 +26,30 @@ describe('xproduct', () => {
   it('should product', () => {
     expect(xproduct([[1, 2], [3, 2], [4, 2]])).toMatchSnapshot()
     expect(xproduct([[1, null], [3, null], [4, null]])).toMatchSnapshot()
+  })
+})
+describe('titles', () => {
+  it('prop names', () => {
+    expect(
+      createCartesian(
+        {
+          oneProp: choice(1, null),
+          twoProp: choice(2, null)
+        },
+        titles.renderPropNames()
+      )
+    ).toMatchSnapshot()
+  })
+  it('check signs', () => {
+    expect(
+      createCartesian(
+        {
+          oneProp: choice(2, null),
+          twoProp: choice(2, null)
+        },
+        titles.renderCheckSignsIfExists()
+      )
+    ).toMatchSnapshot()
   })
 })
 describe('cartesian', () => {

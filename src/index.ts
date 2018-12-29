@@ -14,6 +14,7 @@ import {
   mapValues,
   negate,
   reduce,
+  toPairs,
   values,
   zip
 } from 'lodash/fp'
@@ -26,6 +27,19 @@ interface StoryVariant<T> {
 }
 type CartesianData<T> = { [P in keyof T]: Array<T[P]> | any }
 
+const titles = {
+  renderCheckSignsIfExists: ({
+    exists = '✓',
+    missing = 'x',
+    existsFn = (v: any) => v,
+    sep = ' | '
+  } = {}) => (props: any) =>
+    toPairs(props)
+      .map(([k, v]) => (existsFn(v) ? `${exists} ${k}` : `${missing} ${k}`))
+      .join(sep),
+  renderPropNames: ({ sep = ' | ' } = {}) => (props: any) =>
+    keys(props).join(sep)
+}
 // map props values, with legend lookup but also
 // treat nested structured by flatten->map->unflaten like:
 // { text: 'foo', colors: { bg: '1', fg: '2'}}
@@ -199,5 +213,5 @@ const cartesian = (stories: any) => ({
   }
 })
 
-export { choice, renderWithLegend, renderWithLegendFlat, xproduct }
+export { choice, renderWithLegend, renderWithLegendFlat, xproduct, titles }
 export default cartesian

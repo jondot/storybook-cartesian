@@ -452,6 +452,88 @@ Array [
 ]
 `;
 
+exports[`titles check signs 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": 2,
+        "twoProp": 2,
+      },
+    },
+    "title": "✓ oneProp | ✓ twoProp",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": 2,
+        "twoProp": null,
+      },
+    },
+    "title": "✓ oneProp | x twoProp",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": null,
+        "twoProp": 2,
+      },
+    },
+    "title": "x oneProp | ✓ twoProp",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": null,
+        "twoProp": null,
+      },
+    },
+    "title": "x oneProp | x twoProp",
+  },
+]
+`;
+
+exports[`titles prop names 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": 1,
+        "twoProp": 2,
+      },
+    },
+    "title": "oneProp | twoProp",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": 1,
+        "twoProp": null,
+      },
+    },
+    "title": "oneProp | twoProp",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": null,
+        "twoProp": 2,
+      },
+    },
+    "title": "oneProp | twoProp",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": null,
+        "twoProp": null,
+      },
+    },
+    "title": "oneProp | twoProp",
+  },
+]
+`;
+
 exports[`xproduct should product 1`] = `
 Array [
   Array [

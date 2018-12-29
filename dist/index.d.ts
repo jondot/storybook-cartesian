@@ -6,6 +6,17 @@ interface StoryVariant<T> {
 declare type CartesianData<T> = {
     [P in keyof T]: Array<T[P]> | any;
 };
+declare const titles: {
+    renderCheckSignsIfExists: ({ exists, missing, existsFn, sep }?: {
+        exists?: string | undefined;
+        missing?: string | undefined;
+        existsFn?: ((v: any) => any) | undefined;
+        sep?: string | undefined;
+    }) => (props: any) => string;
+    renderPropNames: ({ sep }?: {
+        sep?: string | undefined;
+    }) => (props: any) => string;
+};
 declare const renderWithLegend: (legend: any) => (f: any) => (props: any) => any;
 declare const renderWithLegendFlat: (legend: any) => (f: any) => (props: any) => any;
 declare const xproduct: (vals: any[][]) => {}[][];
@@ -17,5 +28,5 @@ declare const cartesian: (stories: any) => {
         apply?: ((stories: any, variants: StoryVariant<Props>[]) => void) | undefined;
     }) => void;
 };
-export { choice, renderWithLegend, renderWithLegendFlat, xproduct };
+export { choice, renderWithLegend, renderWithLegendFlat, xproduct, titles };
 export default cartesian;

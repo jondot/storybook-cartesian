@@ -28,6 +28,20 @@ describe('xproduct', () => {
         expect(index_1.xproduct([[1, null], [3, null], [4, null]])).toMatchSnapshot();
     });
 });
+describe('titles', () => {
+    it('prop names', () => {
+        expect(createCartesian({
+            oneProp: index_1.choice(1, null),
+            twoProp: index_1.choice(2, null)
+        }, index_1.titles.renderPropNames())).toMatchSnapshot();
+    });
+    it('check signs', () => {
+        expect(createCartesian({
+            oneProp: index_1.choice(2, null),
+            twoProp: index_1.choice(2, null)
+        }, index_1.titles.renderCheckSignsIfExists())).toMatchSnapshot();
+    });
+});
 describe('cartesian', () => {
     describe('choices', () => {
         it('empty prop', () => {

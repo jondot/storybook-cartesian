@@ -16,7 +16,8 @@ See more about this example in [examples/app](examples/app).
 - [Storybook Cartesian](#storybook-cartesian)
 - [Quick Start](#quick-start)
 - [Basics](#basics)
-- [Advanced](#advanced)
+- [Extras](#extras)
+  - [Premade title renderers](#premade-title-renderers)
   - [Beautiful names for variants](#beautiful-names-for-variants)
   - [Validating Variants](#validating-variants)
 - [Contributing](#contributing)
@@ -148,7 +149,27 @@ cartesian(storiesOf('Button/Cartesian'))
 ```
 
 
-## Advanced
+## Extras
+
+### Premade title renderers
+
+You can pick a title renderer from a premade collection, like so:
+
+```js
+import cartesian, { titles } from 'cartesian'
+cartesian(storiesOf('Button/Cartesian'))
+    .add(
+        seedfn,
+        componentRender,
+        { renderTitle: titles.renderCheckSignsIfExists }
+    )
+```
+
+Which produces the following title with `props = { oneProp: null, twoProp: 2}`:
+
+`x oneProp | ✓ twoProp`
+
+There are more renderers that you can explore (also - happy to get PRs with more!).
 
 ### Beautiful names for variants
 
