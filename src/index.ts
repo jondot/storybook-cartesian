@@ -30,11 +30,7 @@ type CartesianData<T> = { [P in keyof T]: Array<T[P]> | any }
 // treat nested structured by flatten->map->unflaten like:
 // { text: 'foo', colors: { bg: '1', fg: '2'}}
 const renderWithLegend = (legend: any) => (f: any) => (props: any) =>
-  f(
-    unflatten(
-      mapValues((p: any) => legend[JSON.stringify(p)] || p, flatten(props))
-    )
-  )
+  f(unflatten(mapValues((p: any) => legend[p.toString()] || p, flatten(props))))
 
 const xproduct = (vals: any[][]) =>
   reduce((a: any[][], b: any[]) => flatMap(x => map(y => concat(x, y))(b))(a))([

@@ -13,6 +13,7 @@ See more about this example in [examples/app](examples/app).
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Storybook Cartesian](#storybook-cartesian)
 - [Quick Start](#quick-start)
 - [Basics](#basics)
 - [Advanced](#advanced)
@@ -155,12 +156,16 @@ If you'd like prop values to have logical names, try `renderWithLegend`:
 ```js
 import cartesian, { renderWithLegend } from 'cartesian'
 
+const complex = { foo:1, bar: 2 }
+complex.toString = () => 'complex-1'
+
 const renderTitle = renderWithLegend({
   '#FF5630': 'primary',
   '#FFBDAD': 'secondary',
   '#4C9AFF': 'primary-opt',
   '#B3D4FF': 'secondary-opt',
   'Click Me': 'english',
+  [complex]: 'complex object',
   '': 'empty',
   '你好': 'chinese'
 })
