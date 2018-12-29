@@ -67,6 +67,13 @@ describe('cartesian', () => {
                 twoProp: index_1.choice('', 'foobar', 'foobaz', 'test')
             }, renderTitle((props) => JSON.stringify(props)))).toMatchSnapshot();
         });
+        it('render title, legent flat', () => {
+            const renderTitle = index_1.renderWithLegendFlat({ true: 'yes!', false: 'no :(' });
+            expect(createCartesian({
+                oneProp: index_1.choice(true, { some: true }),
+                twoProp: index_1.choice('', 'foobar')
+            }, renderTitle((props) => JSON.stringify(props)))).toMatchSnapshot();
+        });
         it('render with null variants', () => {
             const renderTitle = index_1.renderWithLegend({ 1: 'one', 2: 'two', null: 'meh' });
             expect(createCartesian({

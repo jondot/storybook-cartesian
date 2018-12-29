@@ -324,6 +324,51 @@ Array [
 ]
 `;
 
+exports[`cartesian legends render title, legent flat 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":\\"\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": true,
+        "twoProp": "foobar",
+      },
+    },
+    "title": "{\\"oneProp\\":\\"yes!\\",\\"twoProp\\":\\"foobar\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": Object {
+          "some": true,
+        },
+        "twoProp": "",
+      },
+    },
+    "title": "{\\"oneProp\\":{\\"some\\":true},\\"twoProp\\":\\"\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": Object {
+          "some": true,
+        },
+        "twoProp": "foobar",
+      },
+    },
+    "title": "{\\"oneProp\\":{\\"some\\":true},\\"twoProp\\":\\"foobar\\"}",
+  },
+]
+`;
+
 exports[`cartesian legends render with null variants 1`] = `
 Array [
   Object {

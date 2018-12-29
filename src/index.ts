@@ -39,6 +39,11 @@ const renderWithLegend = (legend: any) => (f: any) => (props: any) =>
     )
   )
 
+const renderWithLegendFlat = (legend: any) => (f: any) => (props: any) =>
+  f(
+    mapValues((p: any) => legend[p != null ? p.toString() : 'null'] || p, props)
+  )
+
 const xproduct = (vals: any[][]) =>
   reduce((a: any[][], b: any[]) => flatMap(x => map(y => concat(x, y))(b))(a))([
     []
@@ -182,5 +187,5 @@ const cartesian = (stories: any) => ({
   }
 })
 
-export { choice, renderWithLegend, xproduct }
+export { choice, renderWithLegend, renderWithLegendFlat, xproduct }
 export default cartesian

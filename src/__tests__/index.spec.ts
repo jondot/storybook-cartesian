@@ -1,4 +1,9 @@
-import cartesian, { choice, renderWithLegend, xproduct } from '../index'
+import cartesian, {
+  choice,
+  renderWithLegend,
+  renderWithLegendFlat,
+  xproduct
+} from '../index'
 
 const createStories = (s: any[]) => ({
   add: (title: string, story: any) => s.push({ title, ...story() })
@@ -74,6 +79,18 @@ describe('cartesian', () => {
           {
             oneProp: choice(true, false),
             twoProp: choice('', 'foobar', 'foobaz', 'test')
+          },
+          renderTitle((props: any) => JSON.stringify(props))
+        )
+      ).toMatchSnapshot()
+    })
+    it('render title, legent flat', () => {
+      const renderTitle = renderWithLegendFlat({ true: 'yes!', false: 'no :(' })
+      expect(
+        createCartesian(
+          {
+            oneProp: choice(true, { some: true }),
+            twoProp: choice('', 'foobar')
           },
           renderTitle((props: any) => JSON.stringify(props))
         )

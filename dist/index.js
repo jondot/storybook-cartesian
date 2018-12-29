@@ -14,6 +14,8 @@ const flat_1 = __importStar(require("flat"));
 // { text: 'foo', colors: { bg: '1', fg: '2'}}
 const renderWithLegend = (legend) => (f) => (props) => f(flat_1.unflatten(fp_1.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, flat_1.default(props))));
 exports.renderWithLegend = renderWithLegend;
+const renderWithLegendFlat = (legend) => (f) => (props) => f(fp_1.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, props));
+exports.renderWithLegendFlat = renderWithLegendFlat;
 const xproduct = (vals) => fp_1.reduce((a, b) => fp_1.flatMap(x => fp_1.map(y => fp_1.concat(x, y))(b))(a))([
     []
 ])(vals);
