@@ -184,6 +184,7 @@ cartesian(storiesOf('Button/Cartesian (legend)', module))
 
 Then, it takes a normal renderTitle function that you supply, and it will make sure prop values will be legend values.
 
+If you want just a top level legend translation (not going into all values in a data structure) use `renderWithLegendFlat`.
 
 ### Validating Variants
 
