@@ -324,6 +324,47 @@ Array [
 ]
 `;
 
+exports[`cartesian legends render with null variants 1`] = `
+Array [
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": 1,
+        "twoProp": 2,
+      },
+    },
+    "title": "{\\"oneProp\\":\\"one\\",\\"twoProp\\":\\"two\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": 1,
+        "twoProp": null,
+      },
+    },
+    "title": "{\\"oneProp\\":\\"one\\",\\"twoProp\\":\\"meh\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": null,
+        "twoProp": 2,
+      },
+    },
+    "title": "{\\"oneProp\\":\\"meh\\",\\"twoProp\\":\\"two\\"}",
+  },
+  Object {
+    "story": Object {
+      "props": Object {
+        "oneProp": null,
+        "twoProp": null,
+      },
+    },
+    "title": "{\\"oneProp\\":\\"meh\\",\\"twoProp\\":\\"meh\\"}",
+  },
+]
+`;
+
 exports[`cartesian vanilla empty 1`] = `Array []`;
 
 exports[`cartesian vanilla empty prop 1`] = `Array []`;

@@ -33,7 +33,7 @@ const renderWithLegend = (legend: any) => (f: any) => (props: any) =>
   f(
     unflatten(
       mapValues(
-        (p: any) => legend[p !== null ? p.toString() : 'null'] || p,
+        (p: any) => legend[p != null ? p.toString() : 'null'] || p,
         flatten(props)
       )
     )

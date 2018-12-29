@@ -67,6 +67,13 @@ describe('cartesian', () => {
                 twoProp: index_1.choice('', 'foobar', 'foobaz', 'test')
             }, renderTitle((props) => JSON.stringify(props)))).toMatchSnapshot();
         });
+        it('render with null variants', () => {
+            const renderTitle = index_1.renderWithLegend({ 1: 'one', 2: 'two', null: 'meh' });
+            expect(createCartesian({
+                oneProp: [1, null],
+                twoProp: [2, null]
+            }, renderTitle((props) => JSON.stringify(props)))).toMatchSnapshot();
+        });
         it('render title where props are nested', () => {
             const renderTitle = index_1.renderWithLegend({ true: 'yes!', false: 'no :(' });
             expect(createCartesian({
