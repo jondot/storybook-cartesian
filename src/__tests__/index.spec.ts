@@ -27,6 +27,9 @@ describe('xproduct', () => {
     expect(xproduct([[1, 2], [3, 2], [4, 2]])).toMatchSnapshot()
     expect(xproduct([[1, null], [3, null], [4, null]])).toMatchSnapshot()
   })
+  it('should product w/arrays', () => {
+    expect(xproduct([[[1, 2], null], [[5, 6], null]])).toMatchSnapshot()
+  })
 })
 describe('titles', () => {
   it('prop names', () => {

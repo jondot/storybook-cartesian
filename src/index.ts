@@ -59,10 +59,13 @@ const renderWithLegendFlat = (legend: any) => (f: any) => (props: any) =>
   )
 
 const xproduct = (vals: any[][]) =>
-  reduce((a: any[][], b: any[]) => flatMap(x => map(y => concat(x, y))(b))(a))([
-    []
-  ])(vals)
+  reduce((a: any[][], b: any[]) =>
+    flatMap(x => map(y => concat(x, [y]))(b))(a)
+  )([[]])(vals)
 
+// [[1,2], [3,4]]
+// [[]]
+// [[1,2]] , [[]] -> [[1,2], []]
 /*
 Turns seed data into node enriched data:
   { foo: ['one', 'two']}

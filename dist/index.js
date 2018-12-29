@@ -23,10 +23,11 @@ const renderWithLegend = (legend) => (f) => (props) => f(flat_1.unflatten(fp_1.m
 exports.renderWithLegend = renderWithLegend;
 const renderWithLegendFlat = (legend) => (f) => (props) => f(fp_1.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, props));
 exports.renderWithLegendFlat = renderWithLegendFlat;
-const xproduct = (vals) => fp_1.reduce((a, b) => fp_1.flatMap(x => fp_1.map(y => fp_1.concat(x, y))(b))(a))([
-    []
-])(vals);
+const xproduct = (vals) => fp_1.reduce((a, b) => fp_1.flatMap(x => fp_1.map(y => fp_1.concat(x, [y]))(b))(a))([[]])(vals);
 exports.xproduct = xproduct;
+// [[1,2], [3,4]]
+// [[]]
+// [[1,2]] , [[]] -> [[1,2], []]
 /*
 Turns seed data into node enriched data:
   { foo: ['one', 'two']}
