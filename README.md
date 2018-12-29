@@ -161,7 +161,7 @@ cartesian(storiesOf('Button/Cartesian'))
     .add(
         seedfn,
         componentRender,
-        { renderTitle: titles.renderCheckSignsIfExists }
+        { renderTitle: titles.renderCheckSignsIfExists() }
     )
 ```
 
