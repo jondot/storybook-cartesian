@@ -205,7 +205,14 @@ cartesian(storiesOf('Button/Cartesian/Tiles', module))
 
 ### Premade title renderers
 
-You can pick a title renderer from a premade collection, like so:
+You can pick a title renderer from a premade collection:
+
+* `renderCheckSignIfExists` - renders the prop name and a 'check' sign if it exists, 'x' if missing
+* `renderPropNames` - renders just the prop names given
+* `renderProps` - render a `prop=value` format
+
+
+You can use one of these like so:
 
 ```js
 import cartesian, { titles } from 'cartesian'

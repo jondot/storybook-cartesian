@@ -12,7 +12,10 @@ const titles = {
     renderCheckSignsIfExists: ({ exists = '✓', missing = 'x', existsFn = (v) => v, sep = ' | ' } = {}) => (props) => fp.toPairs(props)
         .map(([k, v]) => (existsFn(v) ? `${exists} ${k}` : `${missing} ${k}`))
         .join(sep),
-    renderPropNames: ({ sep = ' | ' } = {}) => (props) => fp.keys(props).join(sep)
+    renderPropNames: ({ sep = ' | ' } = {}) => (props) => fp.keys(props).join(sep),
+    renderProps: ({ eqSep = '=', sep = ' ' } = {}) => (props) => fp.toPairs(props)
+        .map(([k, v]) => `${k}${eqSep}${JSON.stringify(v)}`)
+        .join(sep)
 };
 // map props values, with legend lookup but also
 // treat nested structured by flatten->map->unflaten like:

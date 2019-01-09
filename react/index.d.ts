@@ -16,6 +16,10 @@ declare const titles: {
     renderPropNames: ({ sep }?: {
         sep?: string | undefined;
     }) => (props: any) => string;
+    renderProps: ({ eqSep, sep }?: {
+        eqSep?: string | undefined;
+        sep?: string | undefined;
+    }) => (props: any) => string;
 };
 declare const renderWithLegend: (legend: any) => (f: any) => (props: any) => any;
 declare const renderWithLegendFlat: (legend: any) => (f: any) => (props: any) => any;

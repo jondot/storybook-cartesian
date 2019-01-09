@@ -96,7 +96,7 @@ cartesian(storiesOf('Button/Cartesian/applyWith(Tiles)', module))
     }),
     props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
     { 
-      renderTitle: titles.renderPropNames(),
+      renderTitle: titles.renderProps(),
       apply: applyWith("everything!", Tiles)
     }
   )

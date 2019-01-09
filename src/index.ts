@@ -38,7 +38,11 @@ const titles = {
       .map(([k, v]) => (existsFn(v) ? `${exists} ${k}` : `${missing} ${k}`))
       .join(sep),
   renderPropNames: ({ sep = ' | ' } = {}) => (props: any) =>
-    keys(props).join(sep)
+    keys(props).join(sep),
+  renderProps: ({ eqSep = '=', sep = ' ' } = {}) => (props: any) =>
+    toPairs(props)
+      .map(([k, v]) => `${k}${eqSep}${JSON.stringify(v)}`)
+      .join(sep)
 }
 // map props values, with legend lookup but also
 // treat nested structured by flatten->map->unflaten like:
