@@ -180,7 +180,7 @@ cartesian(storiesOf('Button/Cartesian/applyWith(Tiles)', module))
 
 And the result:
 
-![](media/tiles)
+![](media/tiles.png)
 
 You can also use any of the individual components on their own:
 
