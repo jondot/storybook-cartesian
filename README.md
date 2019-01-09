@@ -17,6 +17,7 @@ See more about this example in [examples/app](examples/app).
 - [Quick Start](#quick-start)
 - [Basics](#basics)
 - [Extras](#extras)
+  - [Applying Stories with Premade Components](#applying-stories-with-premade-components)
   - [Premade title renderers](#premade-title-renderers)
   - [Beautiful names for variants](#beautiful-names-for-variants)
   - [Validating Variants](#validating-variants)
@@ -150,6 +151,57 @@ cartesian(storiesOf('Button/Cartesian'))
 
 
 ## Extras
+
+### Applying Stories with Premade Components
+
+You can showcase all variants in two ways with one of the premade components:
+
+* `Tiles` - showcase variants as tiles which fill up the screen (many components on rows and columns).
+* `Rows` - same thing, just one component per row.
+
+And you have a helper function `applyWith(title, component)` that takes a title and one of these components, and generates your stories `apply` function.
+
+
+```jsx
+import { Tiles, applyWith }  from 'storybook-cartesian/react'
+
+cartesian(storiesOf('Button/Cartesian/applyWith(Tiles)', module))
+  .add(() => ({
+      colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
+      text: ['Click Me', '', '你好']
+    }),
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
+    { 
+      renderTitle: titles.renderPropNames(),
+      apply: applyWith("everything!", Tiles)
+    }
+  )
+```
+
+And the result:
+
+![](media/tiles)
+
+You can also use any of the individual components on their own:
+
+```jsx
+import { Rows }  from 'storybook-cartesian/react'
+
+cartesian(storiesOf('Button/Cartesian/Tiles', module))
+  .add(() => ({
+      colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
+      text: ['Click Me', '', '你好']
+    }),
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
+    { 
+      renderTitle: titles.renderPropNames(),
+      apply: (stories, candidates) => {
+        stories.add('all variants', () => <Rows items={candidates}/>)
+      }
+    }
+  )
+```
+
 
 ### Premade title renderers
 

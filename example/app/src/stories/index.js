@@ -4,8 +4,9 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
+import { Tiles, Rows, applyWith }  from '../../../../react'
 import { Button, Welcome } from '@storybook/react/demo';
-import cartesian, { renderWithLegend } from '../../../../dist/index'
+import cartesian, { renderWithLegend, titles } from '../../../../dist/index'
 
 
 storiesOf('Button', module)
@@ -49,7 +50,7 @@ cartesian(storiesOf('Button/Cartesian (legend)', module))
   )
 
 
-cartesian(storiesOf('Button/Cartesian/All', module))
+cartesian(storiesOf('Button/Cartesian/Tiles', module))
   .add(() => ({
       colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
       text: ['Click Me', '', '你好']
@@ -58,13 +59,44 @@ cartesian(storiesOf('Button/Cartesian/All', module))
     { 
       renderTitle: props => `"${props.text}" ${props.colors.bg + '/' + props.colors.fg}`,
       apply: (stories, candidates) => {
-        console.log(candidates)
-        const story = candidates.map(c => (
-          <div style={{ fontFamily: 'helvetica, sans-serif', fontSize: '10px', color: '#aaa', padding: '' }}>
-            <div>{c.title}</div>
-            <div>{c.story}</div>
-          </div>))
-        stories.add('all variants', () => story)
+        stories.add('all variants', () => <Tiles items={candidates}/>)
       }
+    }
+  )
+
+cartesian(storiesOf('Button/Cartesian/Rows', module))
+  .add(() => ({
+      colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
+      text: ['Click Me', '', '你好']
+    }),
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
+    { 
+      renderTitle: props => `"${props.text}" ${props.colors.bg + '/' + props.colors.fg}`,
+      apply: (stories, candidates) => {
+        stories.add('all variants', () => <Rows items={candidates}/>)
+      }
+    }
+  )
+
+cartesian(storiesOf('Button/Cartesian/applyWith(Rows)', module))
+  .add(() => ({
+      colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
+      text: ['Click Me', '', '你好']
+    }),
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
+    { 
+      renderTitle: titles.renderCheckSignsIfExists(),
+      apply: applyWith("everything!", Rows)
+    }
+  )
+cartesian(storiesOf('Button/Cartesian/applyWith(Tiles)', module))
+  .add(() => ({
+      colors: [{ bg: '#FF5630', fg: '#FFBDAD' }, { bg: '#4C9AFF', fg: '#B3D4FF' }],
+      text: ['Click Me', '', '你好']
+    }),
+    props => <Button style={{ padding: '1em 3em', border: 'none', backgroundColor: props.colors.bg, color: props.colors.fg }}>{props.text}</Button>,
+    { 
+      renderTitle: titles.renderPropNames(),
+      apply: applyWith("everything!", Tiles)
     }
   )

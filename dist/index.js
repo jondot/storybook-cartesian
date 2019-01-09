@@ -1,30 +1,25 @@
-"use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const fp_1 = require("lodash/fp");
-const flat_1 = __importStar(require("flat"));
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var fp = require('lodash/fp');
+var flatten = require('flat');
+var flatten__default = _interopDefault(flatten);
+
 const titles = {
-    renderCheckSignsIfExists: ({ exists = '✓', missing = 'x', existsFn = (v) => v, sep = ' | ' } = {}) => (props) => fp_1.toPairs(props)
+    renderCheckSignsIfExists: ({ exists = '✓', missing = 'x', existsFn = (v) => v, sep = ' | ' } = {}) => (props) => fp.toPairs(props)
         .map(([k, v]) => (existsFn(v) ? `${exists} ${k}` : `${missing} ${k}`))
         .join(sep),
-    renderPropNames: ({ sep = ' | ' } = {}) => (props) => fp_1.keys(props).join(sep)
+    renderPropNames: ({ sep = ' | ' } = {}) => (props) => fp.keys(props).join(sep)
 };
-exports.titles = titles;
 // map props values, with legend lookup but also
 // treat nested structured by flatten->map->unflaten like:
 // { text: 'foo', colors: { bg: '1', fg: '2'}}
-const renderWithLegend = (legend) => (f) => (props) => f(flat_1.unflatten(fp_1.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, flat_1.default(props))));
-exports.renderWithLegend = renderWithLegend;
-const renderWithLegendFlat = (legend) => (f) => (props) => f(fp_1.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, props));
-exports.renderWithLegendFlat = renderWithLegendFlat;
-const xproduct = (vals) => fp_1.reduce((a, b) => fp_1.flatMap(x => fp_1.map(y => fp_1.concat(x, [y]))(b))(a))([[]])(vals);
-exports.xproduct = xproduct;
+const renderWithLegend = (legend) => (f) => (props) => f(flatten.unflatten(fp.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, flatten__default(props))));
+const renderWithLegendFlat = (legend) => (f) => (props) => f(fp.mapValues((p) => legend[p != null ? p.toString() : 'null'] || p, props));
+const xproduct = (vals) => fp.reduce((a, b) => fp.flatMap(x => fp.map(y => fp.concat(x, [y]))(b))(a))([[]])(vals);
 // [[1,2], [3,4]]
 // [[]]
 // [[1,2]] , [[]] -> [[1,2], []]
@@ -70,13 +65,12 @@ Note: 'compile' detects if a '$choice$' marker exists _anywhere_
     bar: ['$choice$', [2,3]]
   }
 */
-const compile = (data) => fp_1.find(v => isChoice(v), fp_1.values(data))
+const compile = (data) => fp.find(v => isChoice(v), fp.values(data))
     ? data
-    : fp_1.mapValues(v => (fp_1.isArray(v) ? choice(...v) : v), data);
-const isChoice = (v) => fp_1.isArray(v) && v.length === 2 && fp_1.first(v) === '$choice$';
+    : fp.mapValues(v => (fp.isArray(v) ? choice(...v) : v), data);
+const isChoice = (v) => fp.isArray(v) && v.length === 2 && fp.first(v) === '$choice$';
 const choice = (...choices) => ['$choice$', choices];
-exports.choice = choice;
-const nodeValue = (node) => fp_1.get('1', node);
+const nodeValue = (node) => fp.get('1', node);
 /*
 Seed data structure:
 
@@ -100,18 +94,18 @@ CartesianData is typed to copy this field structure, and replace the
 values with _arrays of values_.
 */
 const defaultApply = (stories, variants) => {
-    fp_1.each(cand => stories.add(cand.title, () => cand.story), variants);
+    fp.each(cand => stories.add(cand.title, () => cand.story), variants);
 };
 const alwaysValid = () => true;
 const cartesian = (stories) => ({
     add: (seed, renderStory, opts) => {
         const { valid, renderTitle, apply } = Object.assign({ apply: defaultApply, renderTitle: (props) => JSON.stringify(props), valid: alwaysValid }, opts);
         // { foo: { bar: [1,2] } } -> { 'foo.bar': [1,2] }
-        const data = flat_1.default(seed(), { safe: true });
+        const data = flatten__default(seed(), { safe: true });
         // { 'foo.bar': [1,2] } -> { 'foo.bar': ['$choice$', [1,2]] }
         const compiledData = compile(data);
         // -> ['foo.bar']
-        const fields = fp_1.keys(compiledData);
+        const fields = fp.keys(compiledData);
         // { foo.bar: ['$choice$', [1,2]], bar.baz: ['$choice$', [3,4]]} -> [ [1,2] ] -> [1, 2]
         // -> ['foo.bar', 'bar.baz']   xproduct [[1,2], [3,4]]
         // -> ['foo.bar', 'bar.baz']        `-> [[1,3], [1,4], [2,3], [2,4]]
@@ -120,21 +114,27 @@ const cartesian = (stories) => ({
         //      ,------------------------------------'
         // -> fromPairs -> {foo.bar: 1, bar.baz:3} -> unflatten -> {foo:{bar:1}, bar:{baz:3}}
         // -> Array<Props> !
-        const rows = fp_1.map(p => flat_1.unflatten(fp_1.fromPairs(fp_1.zip(fields, p))), xproduct(fp_1.map(v => (isChoice(v) ? nodeValue(v) : [v]), fp_1.values(compiledData))));
+        const rows = fp.map(p => flatten.unflatten(fp.fromPairs(fp.zip(fields, p))), xproduct(fp.map(v => (isChoice(v) ? nodeValue(v) : [v]), fp.values(compiledData))));
         // filter rows (remove empty and nonvalid)
         // per row, build a StoryVariant<Props> descriptor on which we call 'apply'.
         // apply simply ships props, story, and title to storybook, with storybook
         // specific glue, but because this is abstracted, can be done to anything that
         // wants this story descriptor
-        const variants = fp_1.map(props => ({
+        const variants = fp.map(props => ({
             props,
             story: renderStory(props),
             title: renderTitle(props)
-        }), fp_1.filter(valid, fp_1.filter(fp_1.negate(fp_1.isEmpty), rows)));
+        }), fp.filter(valid, fp.filter(fp.negate(fp.isEmpty), rows)));
         // should do a foreach on the stories module (anything that supports 'add')
         // per variants from variants
         apply(stories, variants);
     }
 });
+
+exports.choice = choice;
+exports.renderWithLegend = renderWithLegend;
+exports.renderWithLegendFlat = renderWithLegendFlat;
+exports.xproduct = xproduct;
+exports.titles = titles;
 exports.default = cartesian;
 //# sourceMappingURL=index.js.map
